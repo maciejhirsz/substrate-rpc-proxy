@@ -21,6 +21,7 @@ export const dockTestnetControllers: ControllerConfig = {
 		TransactionMaterial: true,
 		TransactionFeeEstimate: true,
 		TransactionSubmit: true,
+		TransactionSendOffline: true,		
 		PalletsStakingProgress: false,
 		PalletsStorage: true,
 	},

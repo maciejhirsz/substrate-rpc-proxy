@@ -5,6 +5,7 @@ import {
 	AccountId,
 	ActiveEraInfo,
 	Block,
+	Call,
 	EraIndex,
 	Extrinsic,
 	Hash,
@@ -81,6 +82,18 @@ const deriveGetHeader = () =>
 				'AccountId',
 				'1zugcajGg5yDD9TEqKKzGx7iKuGWZMkRbYcyaFnaUaEkwMK'
 			),
+		};
+	});
+
+const deriveAccount = () =>
+	Promise.resolve().then(() => {
+		return {
+			accountNonce: polkadotRegistry.createType('Index'),
+			accountId: polkadotRegistry.createType(
+				'AccountId',
+				'1zugcajGg5yDD9TEqKKzGx7iKuGWZMkRbYcyaFnaUaEkwMK'
+			),
+			additional: []
 		};
 	});
 
@@ -271,6 +284,9 @@ export const pendingExtrinsics = (): Promise<Vec<Extrinsic>> =>
 export const tx = (): Extrinsic =>
 	polkadotRegistry.createType('Extrinsic', balancesTransferValid);
 
+export const balanceTransfer = (): Call =>
+	polkadotRegistry.createType('Call', balancesTransferValid);
+
 const referendumInfoOfAt = () =>
 	Promise.resolve().then(() => {
 		polkadotRegistry.createType('ReferendumInfo');
@@ -383,5 +399,8 @@ export const mockApi = ({
 			getHeader: deriveGetHeader,
 			getBlock: deriveGetBlock,
 		},
+		balances: {
+			account: deriveAccount
+		}
 	},
 } as unknown) as ApiPromise;
