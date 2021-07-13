@@ -78,6 +78,13 @@ describe('validateAddressMiddleware', () => {
 		},
 	} as unknown as Request);
 
+	doesNotErrorWith('a valid H160 address', {
+		params: {
+			number: '1',
+			address: '0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac',
+		},
+	} as unknown as Request);
+
 	errorsWith(
 		'an address containing an invalid base58 char',
 		{
@@ -97,7 +104,7 @@ describe('validateAddressMiddleware', () => {
 				address: 'y9EMHt34JJo4rWLSaxoLGdYXvjgSXEd4zHUnQgfNzwES8b',
 			},
 		} as unknown as Request,
-		new BadRequest('Invalid decoded address length')
+		new BadRequest('Invalid address format')
 	);
 
 	errorsWith(
