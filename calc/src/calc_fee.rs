@@ -49,6 +49,12 @@ impl Multiplier {
             ("westend", v) if 10 < v && v < 31 => V1((new_i128(inner), false)),
             ("westend", v) if 31 <= v => V2(new_u128(inner)),
 
+            ("statemine", _v) => V2(new_u128(inner)),
+            ("statemint", _v) => V2(new_u128(inner)),
+
+            ("westmine", _v) => V2(new_u128(inner)),
+            ("westmint", _v) => V2(new_u128(inner)),
+
             ("dock-main-runtime", _) => V2(new_u128(inner)),
             ("dock-pos-main-runtime", _) => V2(new_u128(inner)),
             ("dock-pos-test-runtime", _) => V2(new_u128(inner)),
